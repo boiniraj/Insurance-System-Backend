@@ -1,0 +1,11 @@
+com\nt\repository\CitizenRegistrationRepositoty.class
+com\nt\config\CorsConfig$1.class
+com\nt\bindings\CitizenAppRegistrationInputs.class
+com\nt\config\CorsConfig.class
+com\nt\InsuranceCitizenRegistrationModuleApplication.class
+com\nt\utils\EmailUtils.class
+com\nt\controller\CitizenController.class
+com\nt\ServletInitializer.class
+com\nt\entity\CitizenAppRegistrationEntity.class
+com\nt\service\CitizenAppRegisterImplclass.class
+com\nt\service\ICitizenApplicationRegisterService.class
