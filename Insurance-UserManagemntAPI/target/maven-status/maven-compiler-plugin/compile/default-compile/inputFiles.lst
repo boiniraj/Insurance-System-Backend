@@ -1,0 +1,13 @@
+C:\Users\RAJKUMAR\Desktop\Insurance-Project\Insurance-System-Backend\Insurance-UserManagemntAPI\src\main\java\com\nt\bindings\ActivateUser.java
+C:\Users\RAJKUMAR\Desktop\Insurance-Project\Insurance-System-Backend\Insurance-UserManagemntAPI\src\main\java\com\nt\bindings\LoginCredentials.java
+C:\Users\RAJKUMAR\Desktop\Insurance-Project\Insurance-System-Backend\Insurance-UserManagemntAPI\src\main\java\com\nt\bindings\RecoverPssword.java
+C:\Users\RAJKUMAR\Desktop\Insurance-Project\Insurance-System-Backend\Insurance-UserManagemntAPI\src\main\java\com\nt\bindings\UserAccount.java
+C:\Users\RAJKUMAR\Desktop\Insurance-Project\Insurance-System-Backend\Insurance-UserManagemntAPI\src\main\java\com\nt\config\CorsConfig.java
+C:\Users\RAJKUMAR\Desktop\Insurance-Project\Insurance-System-Backend\Insurance-UserManagemntAPI\src\main\java\com\nt\entity\UserMaster.java
+C:\Users\RAJKUMAR\Desktop\Insurance-Project\Insurance-System-Backend\Insurance-UserManagemntAPI\src\main\java\com\nt\InsuranceUserManagemntAPIApplication.java
+C:\Users\RAJKUMAR\Desktop\Insurance-Project\Insurance-System-Backend\Insurance-UserManagemntAPI\src\main\java\com\nt\repository\IUserMasterRepo.java
+C:\Users\RAJKUMAR\Desktop\Insurance-Project\Insurance-System-Backend\Insurance-UserManagemntAPI\src\main\java\com\nt\rest\UserMnagementController.java
+C:\Users\RAJKUMAR\Desktop\Insurance-Project\Insurance-System-Backend\Insurance-UserManagemntAPI\src\main\java\com\nt\services\IUserService.java
+C:\Users\RAJKUMAR\Desktop\Insurance-Project\Insurance-System-Backend\Insurance-UserManagemntAPI\src\main\java\com\nt\services\UserImplService.java
+C:\Users\RAJKUMAR\Desktop\Insurance-Project\Insurance-System-Backend\Insurance-UserManagemntAPI\src\main\java\com\nt\ServletInitializer.java
+C:\Users\RAJKUMAR\Desktop\Insurance-Project\Insurance-System-Backend\Insurance-UserManagemntAPI\src\main\java\com\nt\utils\EmailUtils.java
