@@ -123,6 +123,11 @@
 			</plugin>
 		</plugins>
 		<finalName>user-management</finalName>
+		<resources>
+        <resource>
+            <directory>src/main/resources</directory>
+        </resource>
+    </resources>
 	</build>
 
 	<dependencyManagement>
