@@ -18,7 +18,7 @@ public class PlanEntity {
 	@Id
 	@Column
 	private Integer PlanId;
-	@Column(length=40)
+	@Column
 	private String PlanName;
 	@Column
 	private LocalDate startDate;
