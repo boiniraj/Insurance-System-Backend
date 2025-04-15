@@ -15,7 +15,7 @@ import lombok.Data;
 public class DcCaseEntity {
 
 	@Id
-	@SequenceGenerator(name="gen1_seq",sequenceName="app_seq1",initialValue=10001,allocationSize=1)
+	@SequenceGenerator(name="gen1_seq",sequenceName="app_seq1",initialValue=5001,allocationSize=1)
 	@GeneratedValue(generator="gen1_seq",strategy=GenerationType.SEQUENCE)
 	private Integer caseNo;
 	@Column

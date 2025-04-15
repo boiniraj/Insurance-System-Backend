@@ -30,9 +30,15 @@ public class DataCollectionController {
     private IDcMgmtService service;
     
     @PostMapping("/generateCaseNo/{appId}")
-    public ResponseEntity<Integer> saveAppidCase(@PathVariable Integer appId) {
+    public ResponseEntity<?> saveAppidCase(@PathVariable Integer appId) {
         Integer caseNo = service.generateCaseNo(appId);
-        return new ResponseEntity<>(caseNo, HttpStatus.OK);       
+
+        if (caseNo == 0) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                                 .body("Invalid Application Id: " + appId);
+        }
+
+        return ResponseEntity.ok(caseNo);
     }
     
     @GetMapping("/plans-data")

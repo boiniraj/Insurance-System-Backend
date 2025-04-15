@@ -44,8 +44,6 @@ public class DcMgmtServiceClass implements IDcMgmtService{
 	private IChildRepository childRepository;
 	@Autowired
 	private EmailUtils emaiUtils;
-	
-	
 	@Override
 	public Integer generateCaseNo(Integer appId) {
 	Optional<CitizenAppRegistrationEntity> optcitizenapp= citizenRepository.findById(appId);
@@ -70,11 +68,11 @@ public class DcMgmtServiceClass implements IDcMgmtService{
 		return ec.getCaseNo();
 		
 		//Save the Object
-		
-		
 	}
 	return 0;
 	}//Generate CaseNo
+	
+	
 	public List<PlanEntity> showAllData(){
 		return planRepository.findAll();
 	}
