@@ -105,7 +105,7 @@ public class ElgibilityImplClass implements IElgibilityService {
 	    }
 
 	    switch (planName.toUpperCase()) {
-	        case "SNAP":
+	        case "SNAP (Supplemental Nutrition Assistance Program)":
 	            if (holderIncome <= 100000.0) {
 	                approvePlan(elgibilityOutput, 9000.0, bankName, accNo,caseNo);
 	            } else {
@@ -113,7 +113,7 @@ public class ElgibilityImplClass implements IElgibilityService {
 	            }
 	            break;
 
-	        case "CCAP":
+	        case "CCAP (Child Care Assistance Program)":
 	            boolean kidsCountCondition = false;
 	            boolean kidsAgeCondition = true;
 	            List<DcChildEntity> childEntities = childRepo.findByCaseNo(caseNo);
@@ -149,7 +149,7 @@ public class ElgibilityImplClass implements IElgibilityService {
 	            }
 	            break;
 
-	        case "CAJW":
+	        case "CAJW (Citizen Assistance for Jobless Youth)":
 	            Optional<DcEducationEntity> eduEntityOpt = educationRepo.findByCaseNo(caseNo);
 	            if (eduEntityOpt.isPresent()) {
 	                int passoutYear = eduEntityOpt.get().getPassOutYear();
@@ -160,6 +160,15 @@ public class ElgibilityImplClass implements IElgibilityService {
 	                }
 	            } else {
 	                denyPlan(elgibilityOutput, "Education details not found");
+	            }
+	            break;
+	            
+	        case "QHP (Qualified Health Plan)":
+	            // Assuming a rule — for now let’s say income must be greater than 100000 (you can customize this)
+	            if (holderIncome > 100000.0) {
+	                approvePlan(elgibilityOutput, 12000.0, bankName, accNo, caseNo);
+	            } else {
+	                denyPlan(elgibilityOutput, "QHP rules not satisfied");
 	            }
 	            break;
 
