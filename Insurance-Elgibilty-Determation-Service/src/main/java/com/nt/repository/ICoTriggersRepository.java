@@ -6,5 +6,6 @@ import com.nt.entity.CoTriggersEntity;
 
 public interface ICoTriggersRepository extends JpaRepository<CoTriggersEntity, Integer> {
 	public CoTriggersEntity findByCaseNo(Integer caseNo);
+	public boolean existsByCaseNo(Integer caseNo);
 
 }

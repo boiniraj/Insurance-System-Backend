@@ -42,6 +42,7 @@ public class ElgibilityImplClass implements IElgibilityService {
 
     @Override
     public ElgibilityDetailsOutput elgibilityCtizen(Integer caseNo) {
+    	
         DcCaseEntity caseEntity = caseRepo.findById(caseNo)
                 .orElseThrow(() -> new IllegalArgumentException("Case not found for caseNo: " + caseNo));
 
@@ -60,15 +61,30 @@ public class ElgibilityImplClass implements IElgibilityService {
 
         elgibilityOutput.setHolderName(citizenEntity.getFullName());
 
-        ElgibilityDetailsEntity elgEntity = new ElgibilityDetailsEntity();
-        BeanUtils.copyProperties(elgibilityOutput, elgEntity);
-        elgEntity.setHolderAdharNo(citizenEntity.getAdharNo());
+        // ✅ Check for existing eligibility record
+        Optional<ElgibilityDetailsEntity> existingRecordOpt = elgibilityRepo.findByCaseNo(caseNo);
+        ElgibilityDetailsEntity elgEntity;
+        
+        if (existingRecordOpt.isPresent()) {
+            // Update existing record
+            elgEntity = existingRecordOpt.get();
+            BeanUtils.copyProperties(elgibilityOutput, elgEntity);
+        } else {
+            // Create new record
+            elgEntity = new ElgibilityDetailsEntity();
+            BeanUtils.copyProperties(elgibilityOutput, elgEntity);
+            elgEntity.setHolderAdharNo(citizenEntity.getAdharNo());
+        }
+        elgEntity.setCaseNo(caseNo); // ensure caseNo is set/updated
         elgibilityRepo.save(elgEntity);
 
-        CoTriggersEntity coTrigger = new CoTriggersEntity();
-        coTrigger.setCaseNo(caseNo);
-        coTrigger.setTriggerStatus("Pending");
-        coTriggerRepo.save(coTrigger);
+        // ✅ Similarly avoid duplicate triggers
+        if (!coTriggerRepo.existsByCaseNo(caseNo)) {
+            CoTriggersEntity coTrigger = new CoTriggersEntity();
+            coTrigger.setCaseNo(caseNo);
+            coTrigger.setTriggerStatus("Pending");
+            coTriggerRepo.save(coTrigger);
+        }
 
         return elgibilityOutput;
     }
