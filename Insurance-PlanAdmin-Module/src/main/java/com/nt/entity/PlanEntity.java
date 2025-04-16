@@ -13,7 +13,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="JRTP701_PLAN_ENTITY")
+@Table(name="plan_admin")
 public class PlanEntity {
 	@Id
 	@Column
