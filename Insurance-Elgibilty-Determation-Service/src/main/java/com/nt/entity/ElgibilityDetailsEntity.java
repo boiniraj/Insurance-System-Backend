@@ -19,10 +19,10 @@ public class ElgibilityDetailsEntity {
 	private Integer edTrackId;
 	@Column
 	private Integer caseNo;
-	@Column(length=30)
+	
 	private String  holderName;
 	private Long holderAdharNo;
-	@Column(length=30)
+	
 	private String planName;
 	@Column(length=30)
 	private String planStatus;
@@ -32,7 +32,7 @@ public class ElgibilityDetailsEntity {
 	private LocalDate endDate;
 	@Column
 	private Double beneficiaryAmt;
-	@Column(length=20)
+
 	private String bankName;
 	@Column
 	private Long accNo;
