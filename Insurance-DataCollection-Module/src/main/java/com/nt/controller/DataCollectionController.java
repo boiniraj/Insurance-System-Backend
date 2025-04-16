@@ -2,6 +2,7 @@ package com.nt.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -78,10 +79,16 @@ public class DataCollectionController {
     }
     
     @PostMapping("/saveChild")
-    public ResponseEntity<Integer> saveChild(@RequestBody List<ChildInputs> child) {
-        Integer caseNo = service.saveChild(child);
-        return new ResponseEntity<>(caseNo, HttpStatus.CREATED);
+    public ResponseEntity<?> saveChild(@RequestBody List<ChildInputs> child) {
+        try {
+            Integer caseNo = service.saveChild(child);
+            return new ResponseEntity<>(caseNo, HttpStatus.CREATED);
+        } catch (Exception e) {
+            e.printStackTrace();  // This will show the exact issue
+            return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
+
     
     @GetMapping("/citizenReport/{caseNo}")
     public ResponseEntity<DcSummaryReport> showAllData(@PathVariable Integer caseNo)
