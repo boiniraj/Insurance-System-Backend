@@ -16,12 +16,12 @@ public class DcIncomeEntity {
     @Id
     private Integer incomeId;
 
-    @Column(name = "CASE_NO")
+    
     private Integer caseNo;
 
-    @Column(name = "EMP_INCOME")
+    
     private Double empIncome;
 
-    @Column(name = "PROPERTY_INCOME")
+    
     private Double propertyIncome;  // Changed to camel case
 }

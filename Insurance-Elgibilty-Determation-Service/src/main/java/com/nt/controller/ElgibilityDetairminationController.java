@@ -19,10 +19,15 @@ public class ElgibilityDetairminationController{
 	private IElgibilityService service;
 	
 	@PostMapping("/citizenElgibility/{caseNo}")
-	public ResponseEntity<ElgibilityDetailsOutput> citizenelgibilitycheck(@PathVariable Integer caseNo)
-	{
-		ElgibilityDetailsOutput elgibility= service.elgibilityCtizen(caseNo);
-		return new ResponseEntity<ElgibilityDetailsOutput>(elgibility,HttpStatus.OK);
+	public ResponseEntity<?> citizenelgibilitycheck(@PathVariable Integer caseNo) {
+	    try {
+	        ElgibilityDetailsOutput elgibility = service.elgibilityCtizen(caseNo);
+	        return ResponseEntity.ok(elgibility);
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+	                             .body("Eligibility check failed: " + e.getMessage());
+	    }
 	}
+
 
 }
