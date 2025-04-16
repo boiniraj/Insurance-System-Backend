@@ -10,188 +10,133 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nt.bindings.ElgibilityDetailsOutput;
-import com.nt.entity.CitizenAppRegistrationEntity;
-import com.nt.entity.CoTriggersEntity;
-import com.nt.entity.DcCaseEntity;
-import com.nt.entity.DcChildEntity;
-import com.nt.entity.DcEducationEntity;
-import com.nt.entity.DcIncomeEntity;
-import com.nt.entity.ElgibilityDetailsEntity;
-import com.nt.entity.PlanEntity;
-import com.nt.repository.ICaseRepository;
-import com.nt.repository.IChildRepository;
-import com.nt.repository.ICitizenRegistrationRepositoty;
-import com.nt.repository.ICoTriggersRepository;
-import com.nt.repository.IEducationRepository;
-import com.nt.repository.IElgibilityDeterminationRepository;
-import com.nt.repository.IIncomeRepository;
-import com.nt.repository.IPlanEntityRepository;
+import com.nt.entity.*;
+import com.nt.repository.*;
+
 @Service
 public class ElgibilityImplClass implements IElgibilityService {
-	@Autowired
-	private IPlanEntityRepository planRepo;
-	@Autowired
-	private ICaseRepository caseRepo; 
-	@Autowired
-	private ICitizenRegistrationRepositoty citizenRepo;
-	@Autowired
-	private IIncomeRepository incomeRepo;
-	@Autowired
-	private IChildRepository childRepo;
-	@Autowired
-	private IEducationRepository educationRepo;
-	@Autowired
-	private  IElgibilityDeterminationRepository elgibilityRepo;
-	@Autowired
-	private ICoTriggersRepository coTriggerRepo;
-	
-	
-	@Override
-	public ElgibilityDetailsOutput elgibilityCtizen(Integer caseNo) {
-	    Optional<DcCaseEntity> optCase = caseRepo.findById(caseNo);
-	    if (!optCase.isPresent()) {
-	        throw new IllegalArgumentException("Case not found for caseNo: " + caseNo);
-	    }
-	    DcCaseEntity caseEntity = optCase.get();
-	    Integer planId = caseEntity.getPlanId();
-	    Integer appId = caseEntity.getAppId();
 
-	    Optional<PlanEntity> optPlan = planRepo.findById(planId);
-	    if (!optPlan.isPresent()) {
-	        throw new IllegalArgumentException("Plan not found for planId: " + planId);
-	    }
-	    String planName = optPlan.get().getPlanName();
+    @Autowired
+    private IPlanEntityRepository planRepo;
 
-	    Optional<CitizenAppRegistrationEntity> optCitizen = citizenRepo.findById(appId);
-	    if (!optCitizen.isPresent()) {
-	        throw new IllegalArgumentException("Citizen not found for appId: " + appId);
-	    }
-	    CitizenAppRegistrationEntity citizenEntity = optCitizen.get();
-	    String citizenFullName = citizenEntity.getFullName();
-	    long holderAdharNo = citizenEntity.getAdharNo();
-	    long accNo = citizenEntity.getAccountNo();
-	    String bankName = citizenEntity.getBankName();
-	    int citizenAge = Period.between(citizenEntity.getDob(), LocalDate.now()).getYears();
+    @Autowired
+    private ICaseRepository caseRepo;
 
-	    ElgibilityDetailsOutput elgibilityOutput = applyPlanConditions(planName, caseNo, citizenAge, bankName, accNo);
-	    elgibilityOutput.setHolderName(citizenFullName);
+    @Autowired
+    private ICitizenRegistrationRepositoty citizenRepo;
 
-	    ElgibilityDetailsEntity elgEntity = new ElgibilityDetailsEntity();
-	    BeanUtils.copyProperties(elgibilityOutput, elgEntity);
-	    elgEntity.setHolderAdharNo(holderAdharNo);
-	    elgEntity.setCaseNo(caseNo);
-	    elgEntity.setAccNo(accNo);
-	    elgEntity.setBankName(bankName);
-	    elgibilityRepo.save(elgEntity);
+    @Autowired
+    private IIncomeRepository incomeRepo;
 
-	    CoTriggersEntity coTrigger = new CoTriggersEntity();
-	    coTrigger.setCaseNo(caseNo);
-	    coTrigger.setTriggerStatus("Pending");
-	    coTriggerRepo.save(coTrigger);
+    @Autowired
+    private IChildRepository childRepo;
 
-	    return elgibilityOutput;
-	}
+    @Autowired
+    private IEducationRepository educationRepo;
 
-	private ElgibilityDetailsOutput applyPlanConditions(String planName, Integer caseNo, Integer citizenAge, String bankName, Long accNo) {
-	    ElgibilityDetailsOutput elgibilityOutput = new ElgibilityDetailsOutput();
-	    elgibilityOutput.setPlanName(planName);
+    @Autowired
+    private IElgibilityDeterminationRepository elgibilityRepo;
 
-	    Optional<DcIncomeEntity> incomeEntityOpt = incomeRepo.findByCaseNo(caseNo);
-	    double holderIncome = 0, holderPropIncome = 0;
-	    if (incomeEntityOpt.isPresent()) {
-	        DcIncomeEntity incomeEntity = incomeEntityOpt.get();
-	        holderIncome = incomeEntity.getEmpIncome();
-	        holderPropIncome = incomeEntity.getPropertyIncome();
-	    }
+    @Autowired
+    private ICoTriggersRepository coTriggerRepo;
 
-	    switch (planName.toUpperCase()) {
-	        case "SNAP (Supplemental Nutrition Assistance Program)":
-	            if (holderIncome <= 100000.0) {
-	                approvePlan(elgibilityOutput, 9000.0, bankName, accNo,caseNo);
-	            } else {
-	                denyPlan(elgibilityOutput, "Citizen income is higher");
-	            }
-	            break;
+    @Override
+    public ElgibilityDetailsOutput elgibilityCtizen(Integer caseNo) {
+        DcCaseEntity caseEntity = caseRepo.findById(caseNo)
+                .orElseThrow(() -> new IllegalArgumentException("Case not found for caseNo: " + caseNo));
 
-	        case "CCAP (Child Care Assistance Program)":
-	            boolean kidsCountCondition = false;
-	            boolean kidsAgeCondition = true;
-	            List<DcChildEntity> childEntities = childRepo.findByCaseNo(caseNo);
-	            if (!childEntities.isEmpty()) {
-	                kidsCountCondition = true;
-	                for (DcChildEntity child : childEntities) {
-	                    if (Period.between(child.getDob(), LocalDate.now()).getYears() > 16) {
-	                        kidsAgeCondition = false;
-	                        break;
-	                    }
-	                }
-	            }
-	            if (holderIncome <= 100000.0 && kidsCountCondition && kidsAgeCondition) {
-	                approvePlan(elgibilityOutput, 10000.0, bankName, accNo,caseNo);
-	            } else {
-	                denyPlan(elgibilityOutput, "CCAP rules not satisfied");
-	            }
-	            break;
+        PlanEntity planEntity = planRepo.findById(caseEntity.getPlanId())
+                .orElseThrow(() -> new IllegalArgumentException("Plan not found for planId: " + caseEntity.getPlanId()));
 
-	        case "MEDAID":
-	            if (holderIncome <= 100000.0 && holderPropIncome == 0.0) {
-	                approvePlan(elgibilityOutput, 8000.0, bankName, accNo,caseNo);
-	            } else {
-	                denyPlan(elgibilityOutput, "MEDAID rules not satisfied");
-	            }
-	            break;
+        CitizenAppRegistrationEntity citizenEntity = citizenRepo.findById(caseEntity.getAppId())
+                .orElseThrow(() -> new IllegalArgumentException("Citizen not found for appId: " + caseEntity.getAppId()));
 
-	        case "MEDCARE":
-	            if (citizenAge >= 65) {
-	                approvePlan(elgibilityOutput, 9000.0, bankName, accNo,caseNo);
-	            } else {
-	                denyPlan(elgibilityOutput, "MEDCARE rules not satisfied");
-	            }
-	            break;
+        int citizenAge = Period.between(citizenEntity.getDob(), LocalDate.now()).getYears();
 
-	        case "CAJW (Citizen Assistance for Jobless Youth)":
-	            Optional<DcEducationEntity> eduEntityOpt = educationRepo.findByCaseNo(caseNo);
-	            if (eduEntityOpt.isPresent()) {
-	                int passoutYear = eduEntityOpt.get().getPassOutYear();
-	                if (holderIncome == 0 && passoutYear < LocalDate.now().getYear()) {
-	                    approvePlan(elgibilityOutput, 10000.0, bankName, accNo,caseNo);
-	                } else {
-	                    denyPlan(elgibilityOutput, "CAJW rules not satisfied");
-	                }
-	            } else {
-	                denyPlan(elgibilityOutput, "Education details not found");
-	            }
-	            break;
-	            
-	        case "QHP (Qualified Health Plan)":
-	            // Assuming a rule — for now let’s say income must be greater than 100000 (you can customize this)
-	            if (holderIncome > 100000.0) {
-	                approvePlan(elgibilityOutput, 12000.0, bankName, accNo, caseNo);
-	            } else {
-	                denyPlan(elgibilityOutput, "QHP rules not satisfied");
-	            }
-	            break;
+        ElgibilityDetailsOutput elgibilityOutput = applyPlanConditions(
+                planEntity.getPlanName(), caseNo, citizenAge,
+                citizenEntity.getBankName(), citizenEntity.getAccountNo()
+        );
 
-	        default:
-	            denyPlan(elgibilityOutput, "Invalid plan name");
-	            break;
-	    }
-	    return elgibilityOutput;
-	}
+        elgibilityOutput.setHolderName(citizenEntity.getFullName());
 
-	private void approvePlan(ElgibilityDetailsOutput output, double amount, String bankName, Long accNo, Integer casNo) {
-	    output.setPlanStatus("Approved");
-	    output.setBeneficiaryAmt(amount);
-	    output.setStartDate(LocalDate.now());
-	    output.setEndDate(LocalDate.now().plusYears(15));
-	    output.setBankName(bankName);
-	    output.setAccNo(accNo);
-	    output.setCaseNo(casNo);
-	    
-	}
-	private void denyPlan(ElgibilityDetailsOutput output, String reason) {
-	    output.setPlanStatus("Denied");
-	    output.setDenialReason(reason);
-	}
+        ElgibilityDetailsEntity elgEntity = new ElgibilityDetailsEntity();
+        BeanUtils.copyProperties(elgibilityOutput, elgEntity);
+        elgEntity.setHolderAdharNo(citizenEntity.getAdharNo());
+        elgibilityRepo.save(elgEntity);
+
+        CoTriggersEntity coTrigger = new CoTriggersEntity();
+        coTrigger.setCaseNo(caseNo);
+        coTrigger.setTriggerStatus("Pending");
+        coTriggerRepo.save(coTrigger);
+
+        return elgibilityOutput;
+    }
+
+    private ElgibilityDetailsOutput applyPlanConditions(String planName, Integer caseNo, Integer citizenAge, String bankName, Long accNo) {
+        ElgibilityDetailsOutput output = new ElgibilityDetailsOutput();
+        output.setPlanName(planName);
+        output.setCaseNo(caseNo);
+        output.setBankName(bankName);
+        output.setAccNo(accNo);
+
+        Optional<DcIncomeEntity> incomeOpt = incomeRepo.findByCaseNo(caseNo);
+        double holderIncome = incomeOpt.map(DcIncomeEntity::getEmpIncome).orElse(0.0);
+        double holderPropIncome = incomeOpt.map(DcIncomeEntity::getPropertyIncome).orElse(0.0);
+
+        switch (planName.toUpperCase()) {
+            case "SNAP (SUPPLEMENTAL NUTRITION ASSISTANCE PROGRAM)":
+                if (holderIncome <= 100000.0) approvePlan(output, 9000.0);
+                else denyPlan(output, "Citizen income is higher");
+                break;
+
+            case "CCAP (CHILD CARE ASSISTANCE PROGRAM)":
+                List<DcChildEntity> childEntities = childRepo.findByCaseNo(caseNo);
+                boolean kidsCount = !childEntities.isEmpty();
+                boolean kidsAge = childEntities.stream().allMatch(c -> Period.between(c.getDob(), LocalDate.now()).getYears() <= 16);
+                if (holderIncome <= 100000.0 && kidsCount && kidsAge) approvePlan(output, 10000.0);
+                else denyPlan(output, "CCAP rules not satisfied");
+                break;
+
+            case "MEDAID":
+                if (holderIncome <= 100000.0 && holderPropIncome == 0.0) approvePlan(output, 8000.0);
+                else denyPlan(output, "MEDAID rules not satisfied");
+                break;
+
+            case "MEDCARE":
+                if (citizenAge >= 65) approvePlan(output, 9000.0);
+                else denyPlan(output, "MEDCARE rules not satisfied");
+                break;
+
+            case "CAJW (CITIZEN ASSISTANCE FOR JOBLESS YOUTH)":
+                Optional<DcEducationEntity> eduOpt = educationRepo.findByCaseNo(caseNo);
+                if (eduOpt.isPresent() && holderIncome == 0 && eduOpt.get().getPassOutYear() < LocalDate.now().getYear()) {
+                    approvePlan(output, 10000.0);
+                } else {
+                    denyPlan(output, "CAJW rules not satisfied");
+                }
+                break;
+
+            case "QHP (QUALIFIED HEALTH PLAN)":
+                if (holderIncome > 100000.0) approvePlan(output, 12000.0);
+                else denyPlan(output, "QHP rules not satisfied");
+                break;
+
+            default:
+                denyPlan(output, "Invalid plan name");
+        }
+        return output;
+    }
+
+    private void approvePlan(ElgibilityDetailsOutput output, double amount) {
+        output.setPlanStatus("Approved");
+        output.setBeneficiaryAmt(amount);
+        output.setStartDate(LocalDate.now());
+        output.setEndDate(LocalDate.now().plusYears(15));
+    }
+
+    private void denyPlan(ElgibilityDetailsOutput output, String reason) {
+        output.setPlanStatus("Denied");
+        output.setDenialReason(reason);
+    }
 }
-	
