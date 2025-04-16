@@ -22,5 +22,5 @@ public class DcChildEntity {
 	@Column
 	private LocalDate dob;
 	@Column
-	private Integer adharNo;
+	private Long adharNo;
 }

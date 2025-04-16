@@ -23,7 +23,7 @@ public class PlanEntity {
 	@Column
 	private LocalDate endDate;
 	@Column
-	private String description;
+	private String planDescription;
 	@Column(length=20)
 	private String activeSw;
 }
