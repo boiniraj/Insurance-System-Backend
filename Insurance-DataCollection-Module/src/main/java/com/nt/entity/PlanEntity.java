@@ -16,7 +16,7 @@ import lombok.Data;
 public class PlanEntity {
 	@Id
 	private Integer PlanId;
-	@Column(length=40)
+	
 	private String PlanName;
 	@Column
 	private LocalDate startDate;
@@ -24,6 +24,6 @@ public class PlanEntity {
 	private LocalDate endDate;
 	@Column
 	private String planDescription;
-	@Column(length=20)
+
 	private String activeSw;
 }
