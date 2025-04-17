@@ -5,6 +5,9 @@ import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.nt.bindings.PlanDataInputs;
@@ -24,6 +27,7 @@ public class PlanServiceImplClass implements IPlanService {
 	}//Save plan
 
 	@Override
+	@CachePut(value = "plans", key = "#planInput.planId")
 	public PlanEntity updatePlan(PlanDataInputs planInput) {
 		Optional<PlanEntity>optPlan=planRepo.findById(planInput.getPlanId());
 		
@@ -37,13 +41,15 @@ public class PlanServiceImplClass implements IPlanService {
 		return plan;
 	}
 
-	@Override
+	 @Override
+	  @CacheEvict(value = "plans", key = "#planId")
 	public String deletePlan(Integer planId) {
 		   planRepo.deleteById(planId);
 		return "This Plan succesfully deleted"+planId;
 	}
 
 	@Override
+	 @Cacheable(value = "planNames")
 	public List<String> showAllPlans() 
 	{ 
 	List<PlanEntity> planentity=planRepo.findAll();
@@ -52,6 +58,7 @@ public class PlanServiceImplClass implements IPlanService {
 	}
 
 	@Override
+    @Cacheable(value = "plans", key = "#planId")
 	public PlanEntity showplanById(Integer planId) {
 		Optional<PlanEntity> optplan=planRepo.findById(planId);
 		PlanEntity planentity=null;
@@ -63,6 +70,7 @@ public class PlanServiceImplClass implements IPlanService {
 	return planentity;
 	}
 	@Override
+	@CachePut(value = "plans", key = "#planId")
 	public String changePlanStatus(Integer planId, String activeSw) {
 		       Optional<PlanEntity> optStatus=planRepo.findById(planId);
 		      
@@ -76,6 +84,7 @@ public class PlanServiceImplClass implements IPlanService {
 	}
 
 	@Override
+    @Cacheable(value = "allPlans")
 	public List< PlanEntity> showAll() {
 	   List< PlanEntity> plan= planRepo.findAll();
 		return plan;

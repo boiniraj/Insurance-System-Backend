@@ -7,11 +7,26 @@ import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.nt.bindings.ElgibilityDetailsOutput;
-import com.nt.entity.*;
-import com.nt.repository.*;
+import com.nt.entity.CitizenAppRegistrationEntity;
+import com.nt.entity.CoTriggersEntity;
+import com.nt.entity.DcCaseEntity;
+import com.nt.entity.DcChildEntity;
+import com.nt.entity.DcEducationEntity;
+import com.nt.entity.DcIncomeEntity;
+import com.nt.entity.ElgibilityDetailsEntity;
+import com.nt.entity.PlanEntity;
+import com.nt.repository.ICaseRepository;
+import com.nt.repository.IChildRepository;
+import com.nt.repository.ICitizenRegistrationRepositoty;
+import com.nt.repository.ICoTriggersRepository;
+import com.nt.repository.IEducationRepository;
+import com.nt.repository.IElgibilityDeterminationRepository;
+import com.nt.repository.IIncomeRepository;
+import com.nt.repository.IPlanEntityRepository;
 
 @Service
 public class ElgibilityImplClass implements IElgibilityService {
@@ -41,6 +56,7 @@ public class ElgibilityImplClass implements IElgibilityService {
     private ICoTriggersRepository coTriggerRepo;
 
     @Override
+    @Cacheable(value = "eligibilityCache", key = "#caseNo")
     public ElgibilityDetailsOutput elgibilityCtizen(Integer caseNo) {
     	
         DcCaseEntity caseEntity = caseRepo.findById(caseNo)

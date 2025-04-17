@@ -6,6 +6,8 @@ import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.nt.bindings.ChildInputs;
@@ -71,20 +73,22 @@ public class DcMgmtServiceClass implements IDcMgmtService{
 	}
 	return 0;
 	}//Generate CaseNo
-	
-	
+	@Override
+	@Cacheable(value = "allPlansCache")
 	public List<PlanEntity> showAllData(){
 		return planRepository.findAll();
 	}
 	
 
 	@Override
+	@Cacheable(value = "planNamesCache")
 	public List<String> showAllPlanNames() {
 	     List<PlanEntity> planentity=planRepository.findAll();
 	     List<String> planNames=planentity.stream().map(plan-> plan.getPlanName()).toList();
 		return planNames;
 	}//show plans
 	@Override
+	@CacheEvict(value = "planNamesCache", allEntries = true)
 	public Integer savePlanSelection(PlanSelectionInputs plan) {
         Optional<DcCaseEntity> optCaseEntity = caseRepository.findById(plan.getCaseNo());
 
@@ -180,6 +184,7 @@ public class DcMgmtServiceClass implements IDcMgmtService{
 	}//save child
 
 	@Override
+	@Cacheable(value = "citizenReportCache", key = "#caseNo")
 	public DcSummaryReport citizenReport(Integer caseNo) {
 	    if (caseNo == null) {
 	        throw new RuntimeException("Error: Case number is required!");

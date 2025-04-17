@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.nt.entity.CitizenAppRegistrationEntity;
@@ -32,6 +33,7 @@ public class PaymentService implements IPaymentsService {
     private EmailUtils emailUtils;
 
     @Override
+    @Cacheable(value = "paymentsByCaseNo", key = "#pinput.caseNo")
     public PaymentsEntity registerPayment(PaymentInputs pinput) {
         Optional<PaymentsEntity> optPayment = prepo.findByCaseNo(pinput.getCaseNo());
         
@@ -72,6 +74,7 @@ public class PaymentService implements IPaymentsService {
     }
 
 	@Override
+	@Cacheable(value = "paymentsByTransactionId", key = "#transactionId")
 	public PaymentsEntity showDetals(String transactionId) {
 		  Optional<PaymentsEntity> ent= prepo.findById(transactionId);
 		  PaymentsEntity ent1=null;

@@ -4,6 +4,9 @@ import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.nt.bindings.CitizenAppRegistrationInputs;
@@ -17,7 +20,7 @@ public class CitizenAppRegisterImplclass implements ICitizenApplicationRegisterS
    @Autowired
     private EmailUtils emailUtils;
  
-	
+   @CachePut(value = "citizens", key = "#result")
    public Integer registerCitizenApplication(CitizenAppRegistrationInputs inputs) {
 	    // Check if email already exists
 	    Optional<CitizenAppRegistrationEntity> isent = repository.findByEmail(inputs.getEmail());
@@ -49,7 +52,8 @@ public class CitizenAppRegisterImplclass implements ICitizenApplicationRegisterS
 	    return appId;
 	}
 
-	@Override
+	    @Override
+	    @CacheEvict(value = "citizens", key = "#id")
 	public String deleterUser(Integer id) {
 		Optional<CitizenAppRegistrationEntity> master =repository.findById(id);
 		if(master.isPresent())
@@ -60,6 +64,18 @@ public class CitizenAppRegisterImplclass implements ICitizenApplicationRegisterS
 		return "delete not ";
 		
 	}
+
+		@Override
+		@Cacheable(value = "citizens", key = "#appId")
+		public CitizenAppRegistrationEntity findbyid(Integer appId) {
+			Optional<CitizenAppRegistrationEntity> citizenopt=repository.findById(appId);
+			CitizenAppRegistrationEntity citizenentity=null;
+			if(citizenopt.isPresent())
+			{
+				citizenentity=citizenopt.get();
+			}
+			return citizenentity;
+		}
 
 	
 }

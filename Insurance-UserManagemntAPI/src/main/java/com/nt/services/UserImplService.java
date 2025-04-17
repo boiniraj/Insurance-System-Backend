@@ -9,6 +9,9 @@ import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Example;
@@ -23,6 +26,8 @@ import com.nt.bindings.UserAccount;
 import com.nt.entity.UserMaster;
 import com.nt.repository.IUserMasterRepo;
 import com.nt.utils.EmailUtils;
+
+
 
 @Service
 public class UserImplService implements IUserService 
@@ -106,6 +111,7 @@ public class UserImplService implements IUserService
 
 
 	@Override
+	@Cacheable(value = "users")
 	public List<UserAccount> listuser()
 	{
 		List<UserAccount> listUser=repository.findAll().stream().map(entity->{
@@ -117,6 +123,7 @@ public class UserImplService implements IUserService
 	}
 
 	@Override
+	 @Cacheable(value = "users", key = "#id")
 	public UserAccount UsershowById(Integer id) {
 		Optional <UserMaster> opt=repository.findById(id);
 		UserAccount account=null;
@@ -129,6 +136,7 @@ public class UserImplService implements IUserService
 	}//user show by id
 
 	@Override
+	 @Cacheable(value = "users", key = "#email + '-' + #name")
 	public UserAccount showUserByEmailAndName(String email, String name) {
 		UserMaster master=repository.findByNameAndEmail(name, email);
 		UserAccount account=null;
@@ -142,6 +150,7 @@ public class UserImplService implements IUserService
 	}
 
 	@Override
+	@CachePut(value = "users", key = "#user.userId")
 	public String updateUser(UserAccount user) {
 		Optional<UserMaster> opt=repository.findById(user.getUserId());
 		if(opt.isPresent())
@@ -157,6 +166,7 @@ public class UserImplService implements IUserService
 		
 	}//update 
 	@Override
+	 @CacheEvict(value = "users", key = "#Id")
 	public String daleteUser(Integer Id) {
 		Optional<UserMaster> opt=repository.findById(Id);
 		if(opt.isPresent())
@@ -169,6 +179,7 @@ public class UserImplService implements IUserService
 	}
 
 	@Override
+	 @CacheEvict(value = "users", key = "#id")
 	public String changeUserStatus(Integer id, String status) {
 		Optional<UserMaster> opt=repository.findById(id);
 		if(opt.isPresent())
