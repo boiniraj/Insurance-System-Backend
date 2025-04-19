@@ -184,7 +184,6 @@ public class DcMgmtServiceClass implements IDcMgmtService{
 	}//save child
 
 	@Override
-	@Cacheable(value = "citizenReportCache", key = "#caseNo")
 	public DcSummaryReport citizenReport(Integer caseNo) {
 	    if (caseNo == null) {
 	        throw new RuntimeException("Error: Case number is required!");
