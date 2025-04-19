@@ -43,11 +43,16 @@ public class DataCollectionController {
     }
     
     @GetMapping("/plans-data")
-    public ResponseEntity<List<PlanEntity>> showData()
-    {
-    	List <PlanEntity> listPlanData=service.showAllData();
-    	return new ResponseEntity<List <PlanEntity>>(listPlanData,HttpStatus.OK);
+    public ResponseEntity<?> showData() {
+        try {
+            List<PlanEntity> listPlanData = service.showAllData();
+            return new ResponseEntity<>(listPlanData, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
+
     
     @GetMapping("/showplanNames")
     public ResponseEntity<List<String>> showPlanNames() {

@@ -100,16 +100,6 @@ public class UserImplService implements IUserService
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-
-
 	@Override
 	@Cacheable(value = "users")
 	public List<UserAccount> listuser()
