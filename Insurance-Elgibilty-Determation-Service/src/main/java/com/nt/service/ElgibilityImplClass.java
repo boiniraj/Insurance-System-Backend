@@ -129,12 +129,12 @@ public class ElgibilityImplClass implements IElgibilityService {
                 else denyPlan(output, "CCAP rules not satisfied");
                 break;
 
-            case "MEDAID":
+            case "MEDICAID":
                 if (holderIncome <= 100000.0 && holderPropIncome == 0.0) approvePlan(output, 8000.0);
                 else denyPlan(output, "MEDAID rules not satisfied");
                 break;
 
-            case "MEDCARE":
+            case "MEDICARE":
                 if (citizenAge >= 65) approvePlan(output, 9000.0);
                 else denyPlan(output, "MEDCARE rules not satisfied");
                 break;
