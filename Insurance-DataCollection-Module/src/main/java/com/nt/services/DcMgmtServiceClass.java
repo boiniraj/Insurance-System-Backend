@@ -74,7 +74,7 @@ public class DcMgmtServiceClass implements IDcMgmtService{
 	return 0;
 	}//Generate CaseNo
 	@Override
-	@Cacheable(value = "allPlansCache")
+	
 	public List<PlanEntity> showAllData(){
 		return planRepository.findAll();
 	}
