@@ -56,7 +56,6 @@ public class ElgibilityImplClass implements IElgibilityService {
     private ICoTriggersRepository coTriggerRepo;
 
     @Override
-    @Cacheable(value = "eligibilityCache", key = "#caseNo")
     public ElgibilityDetailsOutput elgibilityCtizen(Integer caseNo) {
     	
         DcCaseEntity caseEntity = caseRepo.findById(caseNo)

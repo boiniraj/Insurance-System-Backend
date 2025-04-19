@@ -33,7 +33,6 @@ public class PaymentService implements IPaymentsService {
     private EmailUtils emailUtils;
 
     @Override
-    @Cacheable(value = "paymentsByCaseNo", key = "#pinput.caseNo")
     public PaymentsEntity registerPayment(PaymentInputs pinput) {
         Optional<PaymentsEntity> optPayment = prepo.findByCaseNo(pinput.getCaseNo());
         
@@ -74,7 +73,6 @@ public class PaymentService implements IPaymentsService {
     }
 
 	@Override
-	@Cacheable(value = "paymentsByTransactionId", key = "#transactionId")
 	public PaymentsEntity showDetals(String transactionId) {
 		  Optional<PaymentsEntity> ent= prepo.findById(transactionId);
 		  PaymentsEntity ent1=null;
