@@ -81,14 +81,12 @@ public class DcMgmtServiceClass implements IDcMgmtService{
 	
 
 	@Override
-	@Cacheable(value = "planNamesCache")
 	public List<String> showAllPlanNames() {
 	     List<PlanEntity> planentity=planRepository.findAll();
 	     List<String> planNames=planentity.stream().map(plan-> plan.getPlanName()).toList();
 		return planNames;
 	}//show plans
 	@Override
-	@CacheEvict(value = "planNamesCache", allEntries = true)
 	public Integer savePlanSelection(PlanSelectionInputs plan) {
         Optional<DcCaseEntity> optCaseEntity = caseRepository.findById(plan.getCaseNo());
 
