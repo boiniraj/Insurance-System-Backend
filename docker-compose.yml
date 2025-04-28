@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  eureka-server:
+    build: ./Insurance-EurekaServer
+    ports:
+      - "8761:8761"
+
+  config-server:
+    build: ./Insurance-ConfigServer
+    ports:
+      - "8888:8888"
+
+  admin-server:
+    build: ./Insurance-adminserver
+    ports:
+      - "9999:9999"
+
+  citizen-registration-service:
+    build: ./Insurance-Citizen-Registration-Module
+    ports:
+      - "6061:6061"
+    depends_on:
+      - eureka-server
+      - config-server
+      - admin-server
+
+  data-collection-service:
+    build: ./Insurance-DataCollection-Module
+    ports:
+      - "7071:7071"
+    depends_on:
+      - eureka-server
+      - config-server
+      - admin-server
+
+  eligibility-determination-service:
+    build: ./Insurance-Elglibility-Determination-Service
+    ports:
+      - "7072:7072"
+    depends_on:
+      - eureka-server
+      - config-server
+      - admin-server
+
+  payment-service:
+    build: ./Insurance-Payment-Module
+    ports:
+      - "7078:7078"
+    depends_on:
+      - eureka-server
+      - config-server
+      - admin-server
+
+  plan-admin-service:
+    build: ./Insurance-PlanAdmin-Module
+    ports:
+      - "7073:7073"
+    depends_on:
+      - eureka-server
+      - config-server
+      - admin-server
+
+  user-management-service:
+    build: ./Insurance-UserManagemntAPI
+    ports:
+      - "7079:7079"
+    depends_on:
+      - eureka-server
+      - config-server
+      - admin-server
