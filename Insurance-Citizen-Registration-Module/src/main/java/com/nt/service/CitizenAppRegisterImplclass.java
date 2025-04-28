@@ -20,7 +20,7 @@ public class CitizenAppRegisterImplclass implements ICitizenApplicationRegisterS
    @Autowired
     private EmailUtils emailUtils;
  
-   @CachePut(value = "citizens", key = "#result")
+   
    public Integer registerCitizenApplication(CitizenAppRegistrationInputs inputs) {
 	    // Check if email already exists
 	    Optional<CitizenAppRegistrationEntity> isent = repository.findByEmail(inputs.getEmail());
@@ -53,7 +53,6 @@ public class CitizenAppRegisterImplclass implements ICitizenApplicationRegisterS
 	}
 
 	    @Override
-	    @CacheEvict(value = "citizens", key = "#id")
 	public String deleterUser(Integer id) {
 		Optional<CitizenAppRegistrationEntity> master =repository.findById(id);
 		if(master.isPresent())
@@ -66,7 +65,6 @@ public class CitizenAppRegisterImplclass implements ICitizenApplicationRegisterS
 	}
 
 		@Override
-		@Cacheable(value = "citizens", key = "#appId")
 		public CitizenAppRegistrationEntity findbyid(Integer appId) {
 			Optional<CitizenAppRegistrationEntity> citizenopt=repository.findById(appId);
 			CitizenAppRegistrationEntity citizenentity=null;
