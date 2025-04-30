@@ -120,7 +120,7 @@ ISH (Insurance System for Health) is a fully integrated online platform that all
 7. **Payment Confirmation Email**
    – A confirmation email is sent to citizens after successful payment.
 
-   ![benfit](/images/benfit.png "Approved user send Amount")
+   ![benfit](https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Payment%20Succus%20email.png)
      
 8. **Reports Module**
    - Generate various reports such as daily, weekly, and monthly status reports, and citizen approval/rejection reports.
