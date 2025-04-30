@@ -76,9 +76,11 @@ ISH (Insurance System for Health) is a fully integrated online platform that all
    - Collect KYC (Know Your Customer) information, certificates, and documents
 
 <p align="center">
-  <img src="https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Income-Details.png" alt="User Data 1" width="70%" />
-  <img src="https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Child.png" alt="User Data 2" width="70%" />
-  <img src="https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Education-Details.png" alt="User Data 2" width="70%" /> 
+  <img src="https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Income-Details.png" alt="User Data 1" width="60%" />
+   <br>
+  <img src="https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Child.png" alt="User Data 2" width="60%" />
+   <br>
+  <img src="https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Education-Details.png" alt="User Data 2" width="60%" /> 
 </p>
      
 5. **Eligibility Determination Module (ED)**
