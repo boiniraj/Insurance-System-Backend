@@ -65,7 +65,7 @@ ISH (Insurance System for Health) is a fully integrated online platform that all
    - Profile management
    - Forgot password and dashboard functionality
      
-   ![Register/Lgin](/images/usermangament.png "UserData")
+   ![Register/Lgin](https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/User-Register.png)
      
 3. **Application Registration Module (AR)**
    - Citizen onboarding for various plans
