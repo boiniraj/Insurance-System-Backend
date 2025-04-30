@@ -28,13 +28,17 @@ ISH (Insurance System for Health) is a fully integrated online platform that all
 - Citizens can apply for health and insurance plans online.
 - The system determines eligibility based on user-provided data.
 - Approved citizens are provided with monthly benefits based on their selected plans.
-
+---
 ## Government Schemes Covered
 - **SNAP**: A food assistance program for low-income individuals.
 - **CCAP**: A childcare assistance program for low-income families.
 - **Medicaid**: A health insurance plan for citizens with limited income and resources.
 - **Medicare**: Health insurance for citizens over 65 years old.
 - **QHP**: A commercial health insurance plan that citizens can purchase.
+
+![Home Page](https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Plans-Package.png)
+
+---
 
 ## Microservices Architecture
 1. **Config Server**: Centralized configuration management for microservices.
