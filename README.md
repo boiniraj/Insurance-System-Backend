@@ -53,7 +53,7 @@ ISH (Insurance System for Health) is a fully integrated online platform that all
 - **Postman**: Extensively used to test API endpoints, validate responses, and simulate client-server interactions.
 
 
-## Modules
+## 🎯 Features
    ---  
 1. **User Management Module (UM)**
    - User authentication (Login/Signup)
