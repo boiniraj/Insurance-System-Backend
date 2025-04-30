@@ -54,29 +54,37 @@ ISH (Insurance System for Health) is a fully integrated online platform that all
 
 
 ## Modules
-     
-2. **User Management Module (UM)**
+   ---  
+1. **User Management Module (UM)**
    - User authentication (Login/Signup)
    - Profile management
    - Forgot password and dashboard functionality
      
    ![Register/Lgin](https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/User-Register.png)
+
+---
      
-3. **Citizen Registration Module (AR)**
+2. **Citizen Registration Module (AR)**
    - Citizen onboarding for various plans
 
    ![User Registrations](https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Citizen%20Registration.png)
+
+---
 
    **Insurance Id Generation**
    - We Generate Insurance ID or Case No Based On Application Id
 
    ![User Registrations](https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/GenerateCaseNo.png)
+
+---
    
 
  **Plan Selection**
  - we give Case No and Select the Plan
 
  ![User Registrations](https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Plan-Selection.png)
+
+---
 
      
 5. **Data Collection Module (DC)**
@@ -90,20 +98,21 @@ ISH (Insurance System for Health) is a fully integrated online platform that all
   <img src="https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Education-Details.png" alt="User Data 2" width="60%" /> 
 </p>
 
+---
+
 **Fetch Citizen All Given Data**
   - Fetch Citizen Given Details Based On CaseNo
     
      ![Citizen Details](https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Citizen-All-Details.png)   
 
-  
-
-   
-    
+---
      
 5. **Eligibility Determination Module (ED)**
    - Match citizen data against plan rules to determine eligibility
 
    ![Eligibility](https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Eligibility-Check.png)
+
+---
      
 6. **Payment Module**
   -  If the citizen's data satisfies the plan rules, the system proceeds to the payment stage
@@ -113,14 +122,14 @@ ISH (Insurance System for Health) is a fully integrated online platform that all
 
  ![Eligibility](https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Payment-Submission.png)
 
-
-
-
+---
 
 7. **Payment Confirmation Email**
    – A confirmation email is sent to citizens after successful payment.
 
    ![benfit](https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Payment%20Succus%20email.png)
+
+---
      
 8. **Reports Module**
    - Generate various reports such as daily, weekly, and monthly status reports, and citizen approval/rejection reports.
