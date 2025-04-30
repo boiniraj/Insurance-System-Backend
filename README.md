@@ -54,11 +54,6 @@ ISH (Insurance System for Health) is a fully integrated online platform that all
 
 
 ## Modules
-1. **Administration Module (Admin)**
-   - Manage and update plans and schemes
-   - Activate/deactivate accounts of case workers
-     
-  ![PlanApi](/images/plans.png "Plan Api")
      
 2. **User Management Module (UM)**
    - User authentication (Login/Signup)
@@ -71,8 +66,15 @@ ISH (Insurance System for Health) is a fully integrated online platform that all
    - Citizen onboarding for various plans
 
    ![User Registrations](https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Citizen%20Registration.png)
+
+   **Insurance Id Generation**
+   - We Generate Insurance ID or Case No Based On Application Id
+   -  
+   ![User Registrations](https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/GenerateCaseNo.png)
+
+    
      
-4. **Data Collection Module (DC)**
+5. **Data Collection Module (DC)**
    - Collect KYC (Know Your Customer) information, certificates, and documents
 
 <p align="center">
