@@ -75,7 +75,11 @@ ISH (Insurance System for Health) is a fully integrated online platform that all
 4. **Data Collection Module (DC)**
    - Collect KYC (Know Your Customer) information, certificates, and documents
 
-   ![userdata](https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Income-Details.png) ![userdata](https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Child.png) ![userdata](https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Education-Details.png)
+<p align="center">
+  <img src="https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Income-Details.png" alt="User Data 1" width="45%" />
+  <img src="https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Child.png" alt="User Data 2" width="45%" />
+  <img src="https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Education-Details.png" alt="User Data 2" width="45%" /> 
+</p>
      
 5. **Eligibility Determination Module (ED)**
    - Match citizen data against plan rules to determine eligibility
