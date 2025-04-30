@@ -10,7 +10,8 @@ ISH (Insurance System for Health) is a fully integrated online platform that all
 ---
 <br>
 
-![Home Page](https://github.com/boiniraj/Insurance-System-Backend.git/ISH-IMAGES/home.png)
+![Home Page](https://github.com/boiniraj/Insurance-System-Backend.git/Insurance-System-Backend
+/ISH-IMAGES/home.png)
 
 ---
 
