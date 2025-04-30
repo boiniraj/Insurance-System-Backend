@@ -85,6 +85,7 @@ ISH (Insurance System for Health) is a fully integrated online platform that all
 
 **Fetch Citizen All Given Data**
   - Fetch Citizen Given Details Based On CaseNo
+    
      ![Citizen Details](https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Citizen-All-Details.png)   
 
   
