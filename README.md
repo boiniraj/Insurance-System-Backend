@@ -67,16 +67,15 @@ ISH (Insurance System for Health) is a fully integrated online platform that all
      
    ![Register/Lgin](https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/User-Register.png)
      
-3. **Application Registration Module (AR)**
+3. **Citizen Registration Module (AR)**
    - Citizen onboarding for various plans
-   - SSN (Social Security Number) verification
 
-   ![User Registrations](/images/citizenregister.png "UserRegistration")
+   ![User Registrations](https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Citizen%20Registration.png)
      
 4. **Data Collection Module (DC)**
    - Collect KYC (Know Your Customer) information, certificates, and documents
 
-   ![userdata](/images/UserData.png "UserData")
+   ![userdata](https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Income-Details.png) ![userdata](https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Child.png) ![userdata](https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Education-Details.png)
      
 5. **Eligibility Determination Module (ED)**
    - Match citizen data against plan rules to determine eligibility
