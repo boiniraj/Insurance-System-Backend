@@ -106,10 +106,13 @@ ISH (Insurance System for Health) is a fully integrated online platform that all
    ![Eligibility](https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Eligibility-Check.png)
      
 6. **Payment Module**
-   - 
+  -  If the citizen's data satisfies the plan rules, the system proceeds to the payment stage
 
-     ![cotriggers](/images/cotriggers.png "cotriggers")
-     
+<p align="center">
+  <img src="https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Payment-Details.png" alt="User Data 1" width="60%" />
+  <img src="https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Payment-Submission.png" alt="User Data 2" width="60%" />  
+</p>
+
 7. **Benefit Insurance Module (BI)**
    - Send benefit payments to approved citizens
 
