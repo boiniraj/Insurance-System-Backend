@@ -117,8 +117,8 @@ ISH (Insurance System for Health) is a fully integrated online platform that all
 
 
 
-7. **Benefit Insurance Module (BI)**
-   - Send benefit payments to approved citizens
+7. **Payment Confirmation Email**
+   – A confirmation email is sent to citizens after successful payment.
 
    ![benfit](/images/benfit.png "Approved user send Amount")
      
