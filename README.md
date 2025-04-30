@@ -69,10 +69,8 @@ ISH (Insurance System for Health) is a fully integrated online platform that all
 
    **Insurance Id Generation**
    - We Generate Insurance ID or Case No Based On Application Id
-   -  
-   ![User Registrations](https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/GenerateCaseNo.png)
 
-    
+   ![User Registrations](https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/GenerateCaseNo.png)
      
 5. **Data Collection Module (DC)**
    - Collect KYC (Know Your Customer) information, certificates, and documents
@@ -84,6 +82,15 @@ ISH (Insurance System for Health) is a fully integrated online platform that all
    <br>
   <img src="https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Education-Details.png" alt="User Data 2" width="60%" /> 
 </p>
+
+**Fetch Citizen All Given Data**
+  - Fetch Citizen Given Details Based On CaseNo
+     ![Citizen Details](https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Citizen-All-Details.png)   
+
+  
+
+   
+    
      
 5. **Eligibility Determination Module (ED)**
    - Match citizen data against plan rules to determine eligibility
