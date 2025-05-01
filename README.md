@@ -23,7 +23,6 @@ Developed using **HTML, CSS, JavaScript** for the **frontend**, and **Java, Spri
 - **Containerization**: Docker
 - **Cloud**: AWS for infrastructure management
 - **Version Control**: GitHub
-- **Testing**: JUnit for unit testing
 - **API Documentation & Testing**: Swagger, Postman
 
 ## Key Features
