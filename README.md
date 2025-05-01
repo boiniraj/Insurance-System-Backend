@@ -33,7 +33,7 @@ ISH (Insurance System for Health) is a fully integrated online platform that all
 
 ## SNAP (Supplemental Nutrition Assistance Program) 
 
-    - Provides food assistance to low-income individuals and families, enabling them to purchase nutritious food. Eligibility is determined based on income and family size, with the aim of reducing hunger, 
+   - Provides food assistance to low-income individuals and families, enabling them to purchase nutritious food. Eligibility is determined based on income and family size, with the aim of reducing hunger, 
     especially among children and the elderly.
 
 ## CCAP (Child Care Assistance Program) 
