@@ -33,30 +33,30 @@ ISH (Insurance System for Health) is a fully integrated online platform that all
 
 ## SNAP (Supplemental Nutrition Assistance Program) 
 
- - Provides food assistance to low-income individuals and families, enabling them to purchase nutritious food. Eligibility is determined based on income and family size, with the aim of reducing hunger, 
-   especially among children and the elderly.
+    - Provides food assistance to low-income individuals and families, enabling them to purchase nutritious food. Eligibility is determined based on income and family size, with the aim of reducing hunger, 
+    especially among children and the elderly.
 
 ## CCAP (Child Care Assistance Program) 
 
-- Assists low-income families with childcare costs, allowing parents to maintain employment. The program ensures children receive safe, educational care, promoting family stability and child welfare.
+   - Assists low-income families with childcare costs, allowing parents to maintain employment. The program ensures children receive safe, educational care, promoting family stability and child welfare.
 
 ## Medicaid
 
-- Provides medical assistance to low-income individuals who are uninsured. Covers essential healthcare services such as doctor visits, prescriptions, and emergencies, improving access to healthcare for 
-  underserved populations.
+   - Provides medical assistance to low-income individuals who are uninsured. Covers essential healthcare services such as doctor visits, prescriptions, and emergencies, improving access to healthcare for 
+   underserved populations.
 
 ## Medicare
 
-- Provides healthcare for seniors aged 65 and older, covering hospital care, doctor visits, and prescriptions. Ensures elderly citizens receive the healthcare services they need as they age.
+   - Provides healthcare for seniors aged 65 and older, covering hospital care, doctor visits, and prescriptions. Ensures elderly citizens receive the healthcare services they need as they age.
 
 ## CAJW (Citizen Assistance for Jobless Youth)
 
-- Supports unemployed youth with financial aid, career counseling, and training programs to help them re-enter the workforce and secure stable employment.
+   - Supports unemployed youth with financial aid, career counseling, and training programs to help them re-enter the workforce and secure stable employment.
 
 ## QHP (Qualified Health Plan) 
 
-- A commercial health insurance plan that citizens can purchase through the marketplace. It covers preventative care, emergency services, and outpatient care, offering comprehensive health coverage to those not 
-  eligible for government programs.
+   - A commercial health insurance plan that citizens can purchase through the marketplace. It covers preventative care, emergency services, and outpatient care, offering comprehensive health coverage to those 
+     not eligible for government programs.
 
 ![Home Page](https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Plans-Package.png)
 
