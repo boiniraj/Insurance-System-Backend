@@ -142,7 +142,8 @@ ISH (Insurance System for Health) is a fully integrated online platform that all
 ---
      
 8. **Payment Module**
-     – Enabled seamless transition to the payment stage for citizens whose data met the selected plan's eligibility criteria, ensuring smooth processing of payments and plan activation
+
+      – Enabled seamless transition to the payment stage for citizens whose data met the selected plan's eligibility criteria, ensuring smooth processing of payments and plan activation
 
  ![Eligibility](https://github.com/boiniraj/Insurance-System-Backend/blob/main/ISH-IMAGES/Payment-Details.png)
 
